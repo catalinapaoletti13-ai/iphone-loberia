@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>iPhone Loberia — Tienda online de iPhone y iPad</title>
+<meta name="description" content="iPhone nuevos y seminuevos, iPad y accesorios. Precio y calidad, envíos a todo el país y atención personalizada." />
+<style>
+:root{
+  --bg:#05070d; --bg-2:#080c16; --card:#0c111d; --card-2:#101728;
+  --line:rgba(122,160,255,.14); --line-2:rgba(122,160,255,.28);
+  --blue:#0a84ff; --blue-2:#2b6bff; --violet:#7a4dff;
+  --white:#f5f8ff; --muted:#8fa0bf; --radius:14px;
+  --grad:linear-gradient(135deg,var(--blue) 0%,var(--blue-2) 55%,var(--violet) 100%);
+  --font:"SF Pro Display",-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--white);font-family:var(--font);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit;color:inherit}
+.wrap{width:min(1200px,92vw);margin-inline:auto}
+.sec{padding:72px 0}
+.sec-head{display:flex;flex-wrap:wrap;gap:12px;align-items:end;justify-content:space-between;margin-bottom:26px}
+h1,h2,h3{margin:0;letter-spacing:-.02em}
+h2{font-size:clamp(22px,3vw,34px);font-weight:700}
+.sub{color:var(--muted);font-size:15px;margin:6px 0 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:11px;border:1px solid transparent;background:var(--blue);color:#fff;font-weight:600;font-size:14px;cursor:pointer;transition:.18s ease;letter-spacing:.02em}
+.btn:hover{transform:translateY(-1px);box-shadow:0 8px 26px rgba(10,132,255,.32)}
+.btn.ghost{background:transparent;border-color:var(--line-2);color:var(--white)}
+.btn.ghost:hover{background:rgba(43,107,255,.12);box-shadow:none}
+.btn.grad{background:var(--grad)}
+.btn.sm{padding:9px 14px;font-size:13px;border-radius:9px}
+.btn.block{width:100%}
+/* HEADER */
+header{position:sticky;top:0;z-index:60;background:rgba(5,7,13,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.bar{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px;height:66px}
+.logo{display:flex;align-items:center;gap:10px;min-width:0}
+.logo .mark{width:34px;height:34px;flex:none;border-radius:10px;background:var(--grad);display:grid;place-items:center;box-shadow:0 0 22px rgba(43,107,255,.45)}
+.logo .mark svg{width:17px;height:17px;fill:#fff}
+.logo b{font-size:15px;font-weight:700;white-space:nowrap}
+.logo span{display:block;font-size:10px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase}
+nav.main{display:flex;gap:26px;justify-content:center}
+nav.main a{font-size:14px;color:#c8d4ea;transition:.15s}
+nav.main a:hover{color:#fff}
+.actions{display:flex;align-items:center;gap:8px}
+.icobtn{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.03);display:grid;place-items:center;cursor:pointer;position:relative;transition:.18s}
+.icobtn:hover{border-color:var(--line-2);background:rgba(43,107,255,.14)}
+.icobtn svg{width:17px;height:17px;stroke:#dfe8fb;fill:none;stroke-width:1.7}
+#cartCount{position:absolute;top:-6px;right:-6px;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--blue);font-size:11px;font-weight:700;display:grid;place-items:center}
+.burger{display:none}
+.searchbar{display:none;padding:0 0 14px}
+.searchbar.open{display:block}
+.searchbar input,.filters input,.filters select{width:100%;padding:11px 14px;border-radius:11px;border:1px solid var(--line);background:var(--card);color:var(--white);outline:none}
+.searchbar input:focus,.filters select:focus{border-color:var(--blue)}
+/* HERO */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero::before{content:"";position:absolute;width:900px;height:900px;left:50%;top:-500px;transform:translateX(-50%);background:radial-gradient(circle,rgba(43,107,255,.28),transparent 62%);pointer-events:none}
+.hero .grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding:86px 0}
+.tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9fc0ff;border:1px solid var(--line-2);border-radius:999px;padding:7px 14px}
+.hero h1{font-size:clamp(34px,5.4vw,60px);line-height:1.03;font-weight:700;margin:20px 0 16px}
+.hero h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--muted);font-size:17px;max-width:46ch;margin:0 0 28px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.hero-stats{display:flex;gap:28px;margin-top:38px;flex-wrap:wrap}
+.hero-stats div b{display:block;font-size:20px}
+.hero-stats div span{font-size:12px;color:var(--muted)}
+/* PHONE ART */
+.phone{width:min(280px,72vw);aspect-ratio:9/18.5;margin-inline:auto;border-radius:38px;border:1px solid rgba(150,180,255,.25);background:linear-gradient(160deg,#16203a,#070a12 55%);position:relative;box-shadow:0 40px 90px rgba(0,0,0,.7),0 0 70px rgba(43,107,255,.22)}
+.phone::after{content:"";position:absolute;inset:9px;border-radius:30px;background:radial-gradient(120% 80% at 20% 0%,rgba(43,107,255,.5),transparent 55%),linear-gradient(180deg,#0a1120,#05070d)}
+.phone .notch{position:absolute;z-index:2;top:16px;left:50%;transform:translateX(-50%);width:78px;height:20px;border-radius:12px;background:#04060b}
+.thumb{position:relative;aspect-ratio:1/1;border-radius:12px;overflow:hidden;background:radial-gradient(90% 70% at 50% 0%,rgba(43,107,255,.28),transparent 60%),linear-gradient(180deg,#0d1425,#070a12);display:grid;place-items:center}
+.thumb .dev{width:38%;height:74%;border-radius:14px;border:1px solid rgba(150,180,255,.3);background:linear-gradient(160deg,#1a2440,#080c16);box-shadow:0 14px 34px rgba(0,0,0,.6)}
+.thumb.pad .dev{width:64%;height:78%;border-radius:12px}
+.thumb .dev::after{content:"";display:block;margin:8px auto 0;width:34%;height:6px;border-radius:4px;background:#04060b}
+/* CATEGORIES */
+.cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:16px}
+.cat{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:16px;transition:.2s}
+.cat:hover{border-color:var(--line-2);transform:translateY(-3px);box-shadow:0 18px 40px rgba(0,0,0,.55)}
+.cat h3{font-size:16px;margin-top:14px}
+.cat p{color:var(--muted);font-size:13px;margin:6px 0 14px;min-height:36px}
+/* FILTERS */
+.filters{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;border:1px solid var(--line);background:var(--card);padding:14px;border-radius:var(--radius);margin-bottom:22px}
+.filters label{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.filters select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,#8fa0bf 50%),linear-gradient(135deg,#8fa0bf 50%,transparent 50%);background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px;background-repeat:no-repeat}
+.resline{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:16px;font-size:13px;color:var(--muted)}
+.linkbtn{background:none;border:0;color:#7fb0ff;cursor:pointer;font-size:13px}
+/* PRODUCTS */
+.grid-p{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.card{border:1px solid var(--line);background:var(--card);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:.2s}
+.card:hover{border-color:var(--line-2);transform:translateY(-3px);box-shadow:0 18px 44px rgba(0,0,0,.55)}
+.card .body{padding:14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.badge{position:absolute;top:10px;left:10px;z-index:2;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:5px 9px;border-radius:999px;background:rgba(10,132,255,.16);border:1px solid var(--line-2);color:#a9c8ff}
+.badge.used{background:rgba(122,77,255,.16);color:#c6b0ff}
+.card h3{font-size:15px}
+.meta{font-size:12.5px;color:var(--muted)}
+.price{font-size:15px;font-weight:700;margin-top:2px}
+.stock{font-size:12px;color:#63d69a}
+.stock.no{color:#ff8a8a}
+.card .row{display:flex;gap:8px;margin-top:10px}
+.empty{padding:50px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:var(--radius)}
+/* TRADE-IN */
+.tradein{border:1px solid var(--line-2);border-radius:20px;padding:clamp(24px,4vw,48px);background:radial-gradient(90% 130% at 0% 0%,rgba(122,77,255,.18),transparent 55%),linear-gradient(120deg,#0b1020,#070a12);display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center}
+.tradein h2{font-size:clamp(24px,3.4vw,38px)}
+.steps{display:grid;gap:12px}
+.step{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:rgba(255,255,255,.02)}
+.step b{color:#9fc0ff;font-size:13px}
+.step p{margin:2px 0 0;color:var(--muted);font-size:13px}
+/* PAY */
+.pays{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.pay{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:18px;text-align:center;font-size:14px;transition:.2s}
+.pay:hover{border-color:var(--line-2);background:var(--card-2)}
+.pay span{display:block;font-size:11px;color:var(--muted);margin-top:4px}
+/* BENEFITS */
+.bens{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.ben{border:1px solid var(--line);border-radius:var(--radius);padding:20px;background:var(--card)}
+.ben .ic{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;background:rgba(43,107,255,.14);border:1px solid var(--line-2);margin-bottom:12px}
+.ben .ic svg{width:19px;height:19px;stroke:#8fbaff;fill:none;stroke-width:1.6}
+.ben h3{font-size:15px}
+.ben p{color:var(--muted);font-size:13px;margin:6px 0 0}
+/* CONTACT */
+.contact{text-align:center;border:1px solid var(--line);border-radius:20px;padding:clamp(30px,5vw,64px);background:radial-gradient(80% 120% at 50% 0%,rgba(43,107,255,.2),transparent 60%),var(--card)}
+.socials{display:flex;gap:10px;justify-content:center;margin-top:22px;flex-wrap:wrap}
+.socials a{border:1px solid var(--line);padding:9px 16px;border-radius:999px;font-size:13px;color:var(--muted);transition:.18s}
+.socials a:hover{color:#fff;border-color:var(--line-2)}
+/* FOOTER */
+footer{border-top:1px solid var(--line);background:var(--bg-2);padding:52px 0 26px;margin-top:20px}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px}
+footer h4{margin:0 0 12px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9fc0ff}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+footer a,footer li{font-size:13.5px;color:var(--muted)}
+footer a:hover{color:#fff}
+.legal{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:#63728d;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+/* DRAWER / MODAL */
+.overlay{position:fixed;inset:0;background:rgba(2,4,9,.72);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:.25s;z-index:80}
+.overlay.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(400px,92vw);background:var(--bg-2);border-left:1px solid var(--line);z-index:90;transform:translateX(100%);transition:.28s ease;display:flex;flex-direction:column}
+.drawer.open{transform:none}
+.drawer header,.dhead{display:flex;align-items:center;justify-content:space-between;padding:18px;border-bottom:1px solid var(--line);position:static;background:none}
+.dhead b{font-size:15px}
+.close{background:none;border:0;color:var(--muted);font-size:22px;cursor:pointer;line-height:1}
+.citems{flex:1;overflow:auto;padding:14px;display:grid;gap:12px;align-content:start}
+.citem{display:grid;grid-template-columns:60px 1fr auto;gap:12px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:10px;background:var(--card)}
+.citem .thumb{border-radius:8px}
+.citem h4{margin:0;font-size:13.5px}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:9px;overflow:hidden;margin-top:6px}
+.qty button{background:none;border:0;color:#cfe0ff;width:26px;height:26px;cursor:pointer}
+.qty span{min-width:26px;text-align:center;font-size:13px}
+.cfoot{border-top:1px solid var(--line);padding:16px;display:grid;gap:10px}
+.cfoot .tot{display:flex;justify-content:space-between;font-size:14px;color:var(--muted)}
+.modal{position:fixed;z-index:95;inset:0;display:grid;place-items:center;padding:16px;opacity:0;pointer-events:none;transition:.22s}
+.modal.open{opacity:1;pointer-events:auto}
+.modal .box{width:min(880px,100%);max-height:90vh;overflow:auto;background:var(--bg-2);border:1px solid var(--line-2);border-radius:18px}
+.pd{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:22px}
+.pd h2{font-size:24px}
+.pd .meta{margin:4px 0}
+.dl{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;font-size:13.5px;margin:16px 0;color:var(--muted)}
+.dl b{color:#dbe6fb;font-weight:600}
+.mobnav{display:none}
+@media(max-width:980px){
+  .hero .grid{grid-template-columns:1fr;padding:56px 0;gap:34px}
+  .tradein{grid-template-columns:1fr}
+  .fgrid{grid-template-columns:1fr 1fr}
+  .pd{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+  nav.main{display:none}
+  .burger{display:grid}
+  .bar{grid-template-columns:1fr auto;height:60px}
+  .logo span{display:none}
+  .mobnav{display:none;padding:6px 0 16px;border-top:1px solid var(--line)}
+  .mobnav.open{display:grid;gap:2px}
+  .mobnav a{padding:12px 4px;font-size:15px;border-bottom:1px solid rgba(255,255,255,.04)}
+  .grid-p{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .sec{padding:52px 0}
+  .fgrid{grid-template-columns:1fr}
+  .btn{padding:12px 16px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="bar">
+      <a href="#inicio" class="logo" aria-label="iPhone Loberia inicio">
+        <span class="mark"><svg viewBox="0 0 24 24"><path d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.9-1.5-.15-2.9.9-3.6.9s-1.9-.87-3.1-.85c-1.6.02-3.1.93-3.9 2.36-1.7 2.9-.43 7.2 1.2 9.55.8 1.15 1.75 2.44 3 2.39 1.2-.05 1.66-.78 3.11-.78 1.45 0 1.86.78 3.12.75 1.29-.02 2.11-1.17 2.9-2.33.91-1.33 1.29-2.62 1.31-2.69-.03-.01-2.51-.96-2.54-3.83zM14.1 5.6c.65-.79 1.09-1.9.97-3-.94.04-2.07.62-2.74 1.41-.6.7-1.13 1.83-.99 2.91 1.05.08 2.12-.53 2.76-1.32z"/></svg></span>
+        <b>iPhone Loberia<span>Apple Store · Argentina</span></b>
+      </a>
+      <nav class="main">
+        <a href="#inicio">Inicio</a><a href="#iphone">iPhone</a><a href="#ipad">iPad</a>
+        <a href="#usados">Usados</a><a href="#pagos">Medios de pago</a><a href="#contacto">Contacto</a>
+      </nav>
+      <div class="actions">
+        <button class="icobtn" id="btnSearch" aria-label="Buscar"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg></button>
+        <button class="icobtn" id="btnCart" aria-label="Carrito"><svg viewBox="0 0 24 24"><path d="M3 4h2l2.4 11h10L20 7H6"/><circle cx="9.5" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/></svg><span id="cartCount">0</span></button>
+        <button class="icobtn burger" id="btnMenu" aria-label="Menú"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      </div>
+    </div>
+    <div class="searchbar" id="searchWrap"><input id="q" type="search" placeholder="Buscar iPhone 13, Pro Max, iPad, 256 GB…" aria-label="Buscar productos"></div>
+    <nav class="mobnav" id="mobnav">
+      <a href="#inicio">Inicio</a><a href="#iphone">iPhone</a><a href="#ipad">iPad</a>
+      <a href="#usados">Usados</a><a href="#pagos">Medios de pago</a><a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="wrap grid">
+    <div>
+      <span class="tag">Nuevos · Seminuevos · iPad</span>
+      <h1>Encontrá tu <em>próximo iPhone</em></h1>
+      <p>Equipos nuevos y seminuevos. Precio y calidad para elegir el equipo que buscás.</p>
+      <div class="cta">
+        <a class="btn" href="#iphone">VER IPHONE</a>
+        <a class="btn ghost" href="#usados">VER SEMINUEVOS</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>14+</b><span>Modelos disponibles</span></div>
+        <div><b>Envíos</b><span>A todo el país</span></div>
+        <div><b>Trade-in</b><span>Tomamos tu usado</span></div>
+      </div>
+    </div>
+    <div class="phone"><span class="notch"></span></div>
+  </div>
+</section>
+
+<section class="sec wrap" id="categorias">
+  <div class="sec-head"><div><h2>Categorías</h2><p class="sub">Elegí por generación o por tipo de equipo.</p></div></div>
+  <div class="cats" id="cats"></div>
+</section>
+
+<section class="sec wrap" id="iphone">
+  <div class="sec-head">
+    <div><h2>Productos destacados</h2><p class="sub">Consultá disponibilidad, colores y formas de pago.</p></div>
+  </div>
+  <div class="filters">
+    <div><label for="f-modelo">Modelo</label><select id="f-modelo"></select></div>
+    <div><label for="f-gen">Generación</label><select id="f-gen"></select></div>
+    <div><label for="f-cap">Capacidad</label><select id="f-cap"></select></div>
+    <div><label for="f-color">Color</label><select id="f-color"></select></div>
+    <div><label for="f-estado">Estado</label><select id="f-estado"></select></div>
+    <div><label for="f-disp">Disponibilidad</label><select id="f-disp"></select></div>
+    <div><label for="f-orden">Ordenar por</label><select id="f-orden">
+      <option value="destacados">Destacados</option><option value="recientes">Más recientes</option>
+      <option value="menor">Menor precio</option><option value="mayor">Mayor precio</option></select></div>
+  </div>
+  <div class="resline"><span id="count">0 productos</span><button class="linkbtn" id="clearF">Limpiar filtros</button></div>
+  <div class="grid-p" id="grid"></div>
+  <div class="empty" id="empty" hidden>No encontramos productos con esos filtros.</div>
+</section>
+
+<section class="sec wrap" id="usados">
+  <div class="tradein">
+    <div>
+      <span class="tag">Seminuevos</span>
+      <h2 style="margin:16px 0 10px">Tomamos tu iPhone usado</h2>
+      <p class="sub" style="font-size:16px;max-width:52ch">Podés entregar tu iPhone usado como parte de pago. Revisamos el equipo, te pasamos la cotización y lo descontamos de tu próximo iPhone.</p>
+      <div class="cta" style="margin-top:24px">
+        <a class="btn grad" href="#contacto">QUIERO COTIZAR MI IPHONE</a>
+        <button class="btn ghost" data-filter-used>Ver seminuevos</button>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step"><b>1.</b><div><b>Contanos tu modelo</b><p>Generación, capacidad y estado general.</p></div></div>
+      <div class="step"><b>2.</b><div><b>Recibí la cotización</b><p>Te enviamos el valor de toma por WhatsApp.</p></div></div>
+      <div class="step"><b>3.</b><div><b>Cambiá tu equipo</b><p>Abonás solo la diferencia por el nuevo.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec wrap" id="pagos">
+  <div class="sec-head"><div><h2>Medios de pago</h2><p class="sub">Tomamos tu iPhone usado como parte de pago.</p></div></div>
+  <div class="pays">
+    <div class="pay">USD<span>Dólares billete</span></div>
+    <div class="pay">Pesos<span>Efectivo / transferencia</span></div>
+    <div class="pay">Visa<span>Crédito y débito</span></div>
+    <div class="pay">Mastercard<span>Crédito y débito</span></div>
+    <div class="pay">Nativa<span>Planes bancarios</span></div>
+    <div class="pay">American Express<span>Crédito</span></div>
+    <div class="pay">Todos los bancos<span>Tarjetas bancarias</span></div>
+    <div class="pay">Tu iPhone usado<span>Parte de pago</span></div>
+  </div>
+</section>
+
+<section class="sec wrap">
+  <div class="bens">
+    <div class="ben"><div class="ic"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg></div><h3>Equipos nuevos y seminuevos</h3><p>Stock de varias generaciones y capacidades.</p></div>
+    <div class="ben"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.5 6 .8-4.4 4.2 1.1 6L12 16.7 6.7 19.5l1.1-6L3.4 9.3l6-.8z"/></svg></div><h3>Precio y calidad</h3><p>Equipos revisados y precios competitivos.</p></div>
+    <div class="ben"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17" cy="17.5" r="1.6"/></svg></div><h3>Envíos a todo el país</h3><p>Despachos con seguimiento a toda Argentina.</p></div>
+    <div class="ben"><div class="ic"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 10-3.4 7l3.4 1-1-3.4A8.9 8.9 0 0021 12z"/></svg></div><h3>Atención personalizada</h3><p>Te asesoramos antes y después de la compra.</p></div>
+  </div>
+</section>
+
+<section class="sec wrap" id="contacto">
+  <div class="contact">
+    <h2>¿Qué iPhone estás buscando?</h2>
+    <p class="sub" style="font-size:16px;margin:12px auto 26px;max-width:52ch">Consultanos por disponibilidad, modelos, colores y formas de pago.</p>
+    <a class="btn grad" href="https://wa.me/540000000000" target="_blank" rel="noopener">CONSULTAR POR WHATSAPP</a>
+    <div class="socials">
+      <a href="#" aria-label="Instagram">Instagram · @placeholder</a>
+      <a href="#" aria-label="Facebook">Facebook · placeholder</a>
+      <a href="#" aria-label="TikTok">TikTok · @placeholder</a>
+      <a href="#" aria-label="Email">hola@placeholder.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <div class="logo" style="margin-bottom:12px">
+          <span class="mark"><svg viewBox="0 0 24 24"><path d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.9-1.5-.15-2.9.9-3.6.9s-1.9-.87-3.1-.85c-1.6.02-3.1.93-3.9 2.36-1.7 2.9-.43 7.2 1.2 9.55.8 1.15 1.75 2.44 3 2.39 1.2-.05 1.66-.78 3.11-.78 1.45 0 1.86.78 3.12.75 1.29-.02 2.11-1.17 2.9-2.33.91-1.33 1.29-2.62 1.31-2.69-.03-.01-2.51-.96-2.54-3.83zM14.1 5.6c.65-.79 1.09-1.9.97-3-.94.04-2.07.62-2.74 1.41-.6.7-1.13 1.83-.99 2.91 1.05.08 2.12-.53 2.76-1.32z"/></svg></span>
+          <b>iPhone Loberia</b>
+        </div>
+        <p style="color:var(--muted);font-size:13.5px;max-width:34ch;margin:0">iPhone nuevos y seminuevos, iPad y accesorios. Loberia, Buenos Aires · Argentina.</p>
+      </div>
+      <div><h4>Menú</h4><ul>
+        <li><a href="#inicio">Inicio</a></li><li><a href="#iphone">iPhone</a></li><li><a href="#ipad">iPad</a></li>
+        <li><a href="#usados">Usados</a></li><li><a href="#contacto">Contacto</a></li></ul></div>
+      <div><h4>Categorías</h4><ul>
+        <li><a href="#iphone">iPhone 12 y 13</a></li><li><a href="#iphone">iPhone 14 y 15</a></li>
+        <li><a href="#iphone">iPhone 16 y 17</a></li><li><a href="#ipad">iPad</a></li>
+        <li><a href="#usados">Seminuevos</a></li></ul></div>
+      <div><h4>Pagos y contacto</h4><ul>
+        <li>USD · Pesos · Tarjetas</li><li>Visa · Mastercard · Amex · Nativa</li>
+        <li>WhatsApp: +54 9 000 000-0000</li><li>Instagram: @placeholder</li></ul></div>
+    </div>
+    <div class="legal"><span>© <span id="year"></span> iPhone Loberia. Demo visual — datos de contacto y precios son placeholders.</span><span>Apple, iPhone y iPad son marcas de Apple Inc.</span></div>
+  </div>
+</footer>
+
+<div class="overlay" id="ov"></div>
+
+<aside class="drawer" id="cart" aria-label="Carrito">
+  <div class="dhead"><b>Tu carrito</b><button class="close" data-close aria-label="Cerrar">&times;</button></div>
+  <div class="citems" id="citems"></div>
+  <div class="cfoot">
+    <div class="tot"><span>Subtotal</span><b id="subtotal" style="color:#fff">Consultar</b></div>
+    <button class="btn grad block" id="checkout">FINALIZAR COMPRA</button>
+    <button class="btn ghost block" id="clearCart">Vaciar carrito</button>
+  </div>
+</aside>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true">
+  <div class="box">
+    <div class="dhead"><b id="mTitle">Producto</b><button class="close" data-close aria-label="Cerrar">&times;</button></div>
+    <div class="pd" id="mBody"></div>
+  </div>
+</div>
+
+<script>
+const PRODUCTS = [
+ {id:1,name:"iPhone 12",gen:"iPhone 12",cap:"128 GB",color:"Negro",estado:"SEMINUEVO",stock:true,tipo:"iphone"},
+ {id:2,name:"iPhone 12 Pro",gen:"iPhone 12",cap:"128 GB",color:"Grafito",estado:"SEMINUEVO",stock:true,tipo:"iphone"},
+ {id:3,name:"iPhone 13",gen:"iPhone 13",cap:"128 GB",color:"Medianoche",estado:"SEMINUEVO",stock:true,tipo:"iphone"},
+ {id:4,name:"iPhone 13",gen:"iPhone 13",cap:"128 GB",color:"Blanco estelar",estado:"NUEVO",stock:true,tipo:"iphone"},
+ {id:5,name:"iPhone 13 Pro",gen:"iPhone 13",cap:"128 GB",color:"Azul alpino",estado:"SEMINUEVO",stock:true,tipo:"iphone"},
+ {id:6,name:"iPhone 13 Pro Max",gen:"iPhone 13",cap:"128 GB",color:"Grafito",estado:"SEMINUEVO",stock:false,tipo:"iphone"},
+ {id:7,name:"iPhone 14",gen:"iPhone 14",cap:"128 GB",color:"Medianoche",estado:"NUEVO",stock:true,tipo:"iphone"},
+ {id:8,name:"iPhone 14 Pro",gen:"iPhone 14",cap:"128 GB",color:"Negro espacial",estado:"SEMINUEVO",stock:true,tipo:"iphone"},
+ {id:9,name:"iPhone 15",gen:"iPhone 15",cap:"128 GB",color:"Azul",estado:"NUEVO",stock:true,tipo:"iphone"},
+ {id:10,name:"iPhone 15 Pro",gen:"iPhone 15",cap:"256 GB",color:"Titanio natural",estado:"NUEVO",stock:true,tipo:"iphone"},
+ {id:11,name:"iPhone 16",gen:"iPhone 16",cap:"128 GB",color:"Ultramarino",estado:"NUEVO",stock:true,tipo:"iphone"},
+ {id:12,name:"iPhone 16 Pro",gen:"iPhone 16",cap:"128 GB",color:"Titanio negro",estado:"NUEVO",stock:true,tipo:"iphone"},
+ {id:13,name:"iPhone 17 Pro",gen:"iPhone 17",cap:"256 GB",color:"Titanio",estado:"NUEVO",stock:false,tipo:"iphone"},
+ {id:14,name:'iPad A16 · 11"',gen:"iPad",cap:"128 GB",color:"Plata",estado:"NUEVO",stock:true,tipo:"ipad"}
+];
+const CATS=[
+ {t:"iPhone 12 y 13",d:"Generaciones con la mejor relación precio y calidad.",f:["iPhone 12","iPhone 13"]},
+ {t:"iPhone 14 y 15",d:"Equipos actuales, nuevos y seminuevos.",f:["iPhone 14","iPhone 15"]},
+ {t:"iPhone 16 y 17",d:"Lo último de Apple, con garantía.",f:["iPhone 16","iPhone 17"]},
+ {t:"iPad",d:"iPad para estudio, trabajo y creatividad.",f:["iPad"]},
+ {t:"iPhone seminuevos",d:"Revisados, listos para usar. Tomamos tu usado.",f:["SEMINUEVO"]}
+];
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const art=p=>`<div class="thumb ${p.tipo==='ipad'?'pad':''}"><div class="dev"></div>${p.estado==='SEMINUEVO'?'<span class="badge used">Seminuevo</span>':'<span class="badge">Nuevo</span>'}</div>`;
+
+/* categorías */
+$("#cats").innerHTML=CATS.map((c,i)=>`<article class="cat"><div class="thumb ${c.t==='iPad'?'pad':''}"><div class="dev"></div></div>
+ <h3>${c.t}</h3><p>${c.d}</p><button class="btn sm ghost" data-cat="${i}">Ver modelos</button></article>`).join("");
+$("#cats").addEventListener("click",e=>{const b=e.target.closest("[data-cat]");if(!b)return;
+ const c=CATS[+b.dataset.cat];reset();
+ if(c.f[0]==="SEMINUEVO"){$("#f-estado").value="SEMINUEVO";} else if(c.f.length===1){$("#f-gen").value=c.f[0];}
+ else {state.multi=c.f;} render();document.getElementById("iphone").scrollIntoView({behavior:"smooth"});});
+
+/* filtros */
+const state={multi:null,q:""};
+const uniq=k=>[...new Set(PRODUCTS.map(p=>p[k]))];
+function fill(sel,label,vals){$(sel).innerHTML=`<option value="">${label}</option>`+vals.map(v=>`<option>${v}</option>`).join("")}
+fill("#f-modelo","Todos",uniq("name"));fill("#f-gen","Todas",uniq("gen"));fill("#f-cap","Todas",uniq("cap"));
+fill("#f-color","Todos",uniq("color"));fill("#f-estado","Todos",uniq("estado"));
+$("#f-disp").innerHTML='<option value="">Todas</option><option value="si">En stock</option><option value="no">Sin stock</option>';
+function reset(){["#f-modelo","#f-gen","#f-cap","#f-color","#f-estado","#f-disp"].forEach(s=>$(s).value="");state.multi=null}
+$$(".filters select").forEach(s=>s.addEventListener("change",()=>{if(s.id!=="f-orden")state.multi=null;render()}));
+$("#clearF").onclick=()=>{reset();$("#q").value="";state.q="";render()};
+$("#q").addEventListener("input",e=>{state.q=e.target.value.toLowerCase();render()});
+document.querySelector("[data-filter-used]").onclick=()=>{reset();$("#f-estado").value="SEMINUEVO";render();document.getElementById("iphone").scrollIntoView({behavior:"smooth"})};
+
+function filtered(){
+ let list=PRODUCTS.filter(p=>{
+  const v=(s,k)=>{const x=$(s).value;return !x||p[k]===x};
+  const disp=$("#f-disp").value;
+  return v("#f-modelo","name")&&v("#f-gen","gen")&&v("#f-cap","cap")&&v("#f-color","color")&&v("#f-estado","estado")
+   &&(!disp||(disp==="si")===p.stock)
+   &&(!state.multi||state.multi.includes(p.gen))
+   &&(!state.q||(p.name+" "+p.cap+" "+p.color+" "+p.estado).toLowerCase().includes(state.q));
+ });
+ const o=$("#f-orden").value;
+ if(o==="recientes")list=[...list].sort((a,b)=>b.id-a.id);
+ if(o==="menor")list=[...list].sort((a,b)=>a.id-b.id);
+ if(o==="mayor")list=[...list].sort((a,b)=>b.id-a.id);
+ return list;
+}
+function render(){
+ const list=filtered();
+ $("#count").textContent=`${list.length} producto${list.length===1?"":"s"}`;
+ $("#empty").hidden=list.length>0;
+ $("#grid").innerHTML=list.map(p=>`<article class="card">${art(p)}
+  <div class="body"><h3>${p.name}</h3>
+   <div class="meta">${p.cap} · ${p.color}</div>
+   <div class="price">Consultar precio</div>
+   <div class="stock ${p.stock?"":"no"}">${p.stock?"Disponible":"Sin stock · consultar"}</div>
+   <div class="row"><button class="btn sm ghost" data-view="${p.id}">Ver producto</button>
+   <a class="btn sm" href="https://wa.me/540000000000" target="_blank" rel="noopener">Consultar</a></div>
+  </div></article>`).join("");
+}
+render();
+
+/* modal producto */
+let qty=1;
+$("#grid").addEventListener("click",e=>{const b=e.target.closest("[data-view]");if(b)open(+b.dataset.view)});
+function open(id){
+ const p=PRODUCTS.find(x=>x.id===id);qty=1;
+ $("#mTitle").textContent=p.name;
+ $("#mBody").innerHTML=`<div>${art(p)}</div><div>
+  <h2>${p.name}</h2><div class="meta">${p.tipo==="ipad"?"iPad":"iPhone"} · ${p.gen}</div>
+  <div class="dl"><b>Capacidad</b><span>${p.cap}</span><b>Color</b><span>${p.color}</span>
+   <b>Estado</b><span>${p.estado}</span><b>Disponibilidad</b><span>${p.stock?"Disponible":"Sin stock · consultar"}</span></div>
+  <div class="price" style="font-size:20px">Consultar precio</div>
+  <div class="qty" id="mq"><button data-q="-1">−</button><span id="qv">1</span><button data-q="1">+</button></div>
+  <div class="row" style="display:grid;gap:10px;margin-top:16px">
+   <a class="btn grad" href="https://wa.me/540000000000" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+   <button class="btn ghost" id="addC">Agregar al carrito</button></div></div>`;
+ $("#mq").onclick=e=>{const b=e.target.closest("[data-q]");if(!b)return;qty=Math.max(1,qty+ +b.dataset.q);$("#qv").textContent=qty};
+ $("#addC").onclick=()=>{add(p,qty);closeAll();openCart()};
+ $("#modal").classList.add("open");$("#ov").classList.add("open");
+}
+
+/* carrito */
+let cart=[];
+function add(p,n=1){const it=cart.find(i=>i.id===p.id);it?it.n+=n:cart.push({...p,n});draw()}
+function draw(){
+ $("#cartCount").textContent=cart.reduce((a,b)=>a+b.n,0);
+ $("#citems").innerHTML=cart.length?cart.map(i=>`<div class="citem">${art(i)}
+  <div><h4>${i.name}</h4><div class="meta">${i.cap} · ${i.estado}</div>
+   <div class="qty" data-id="${i.id}"><button data-q="-1">−</button><span>${i.n}</span><button data-q="1">+</button></div></div>
+  <button class="close" data-del="${i.id}" aria-label="Eliminar">&times;</button></div>`).join("")
+  :`<p style="color:var(--muted);font-size:14px;text-align:center;padding:30px 10px">Tu carrito está vacío.</p>`;
+ $("#subtotal").textContent=cart.length?"Consultar":"—";
+}
+$("#citems").addEventListener("click",e=>{
+ const d=e.target.closest("[data-del]");if(d){cart=cart.filter(i=>i.id!=d.dataset.del);return draw()}
+ const q=e.target.closest("[data-q]");if(q){const id=+q.parentElement.dataset.id;const it=cart.find(i=>i.id===id);
+  it.n+= +q.dataset.q; if(it.n<1)cart=cart.filter(i=>i.id!==id); draw()}
+});
+$("#clearCart").onclick=()=>{cart=[];draw()};
+$("#checkout").onclick=()=>{closeAll();document.getElementById("contacto").scrollIntoView({behavior:"smooth"})};
+
+/* UI */
+function openCart(){$("#cart").classList.add("open");$("#ov").classList.add("open")}
+function closeAll(){$$(".open").forEach(el=>{if(el.id!=="mobnav"&&el.id!=="searchWrap")el.classList.remove("open")})}
+$("#btnCart").onclick=openCart;
+$("#ov").onclick=closeAll;
+$$("[data-close]").forEach(b=>b.onclick=closeAll);
+document.addEventListener("keydown",e=>e.key==="Escape"&&closeAll());
+$("#btnMenu").onclick=()=>$("#mobnav").classList.toggle("open");
+$("#btnSearch").onclick=()=>{$("#searchWrap").classList.toggle("open");if($("#searchWrap").classList.contains("open"))$("#q").focus()};
+$$(".mobnav a").forEach(a=>a.onclick=()=>$("#mobnav").classList.remove("open"));
+document.getElementById("ipad")||(()=>{const s=document.createElement("span");s.id="ipad";document.getElementById("iphone").prepend(s)})();
+$("#year").textContent=new Date().getFullYear();
+draw();
+</script>
+</body>
+</html>
